@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lable.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @lable.number %>
+</p>
+
+<%= link_to 'Edit', edit_lable_path(@lable) %> |
+<%= link_to 'Back', lables_path %>

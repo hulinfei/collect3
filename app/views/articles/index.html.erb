@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles <%= current_user.email %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>From</th>
+      <th>Url</th>
+      <th>Readnumber</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.content %></td>
+        <td><%= article.from %></td>
+        <td><%= article.url %></td>
+        <td><%= article.read_number %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><a href="/articles/<%= article.id %>/edit">编辑</a>  <%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<%= paginate @articles %>   共有：<%= @articles.total_count %>
+<br>
+
+<%= link_to '新建文章', new_article_path %>
