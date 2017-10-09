@@ -1,4 +1,4 @@
-class Article
+ class Article
   include Mongoid::Document
   include Mongoid::Timestamps
   # include Mongoid::Tags

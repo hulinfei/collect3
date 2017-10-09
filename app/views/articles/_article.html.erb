@@ -1,0 +1,13 @@
+<tr>
+  <td><%= article.title %></td>
+  <td><%= article.content %></td>
+  <td><%= article.from %></td>
+  <td><%= article.url %></td>
+  <td><%= article.read_number %></td>
+  <td><%= article.created_at %></td>
+  <td>
+  	<%= link_to "查看", article, class: "btn btn-default btn-xs" %>
+    <%= link_to "修改", edit_article_path(article), class: "btn btn-default btn-xs" %>
+    <%= link_to "删除", article_path(article), method: :delete, class: "btn btn-default btn-xs" %>
+  </td>
+</tr>

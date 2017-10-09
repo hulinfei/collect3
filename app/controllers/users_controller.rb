@@ -1,18 +1,39 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :active]
   before_action :allow_without_password, only: [:update]
+  load_and_authorize_resource
+  layout 'admin'
 
 
   # GET /logins
   # GET /logins.json
   def index
-    @users = User.all
+    @users = User.all.order_by( :created_at => 'desc')
+    @users = @users.where(email: /#{params[:email]}/) unless params[:email].blank?
+    @users = @users.where(username: /#{params[:username]}/) unless params[:username].blank?
+    @users = @users.page params[:page]
+  end
+
+  def active
+    @user.update(active: true)
+    respond_to do |format|
+      format.html { redirect_to users_path(page: params[:page]), notice: 'user was successfully actived.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def unactive
+    @user.update(active: false)
+    respond_to do |format|
+      format.html { redirect_to users_path(page: params[:page]), notice: 'user was successfully unactived.' }
+      format.json { head :no_content }
+    end
   end
 
   # GET /logins/1
   # GET /logins/1.json
   def show
-  end
+  end 
 
   # GET /logins/new
   def new
@@ -83,6 +104,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
+      params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar, :role)
     end
 end

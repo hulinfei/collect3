@@ -1,52 +1,83 @@
-<%= form_with(model: article, local: true) do |form| %>
-  <% if article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-      <% article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :article_title %>
-  </div>
-  <div class="field">
-    <%= form.label "标签" %>
-    <input type="text" name="label" >
-  </div>
-  <div class="field">
-     <%= form.label "选择标签" %>
-    <% @labels.each_with_index do |label, index| %>
+<%= simple_form_for(@article, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+  <%= f.input :title, label: "文章标题" %>
+  <div class="form-group string required article_title">
+    <label class="col-sm-2 control-label string required" for="article_title">
+      选择标签</label>
+      <div class="col-sm-10">
+        <% @labels.each_with_index do |label, index| %>
       <input id="" name="checked_labels[<%= index %>]" type="checkbox" value="<%= label[1] %>" <%= article.labels.find(label[1]).nil? ? '' : 'checked' %> />
       <label for="pet_dog"><%= label[0] %></label>
     <% end %>
-  </div>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :article_content %>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :from %>
-    <%= form.text_field :from, id: :article_from %>
-  </div>
+  <%= f.input :content, label: "文章内容" %>
+  <%= f.input :from, label: "来源" %>
+  <%= f.input :url, label: "链接" %>
+  <%= f.input :read_number, label: "阅读数" %>
 
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url, id: :article_url %>
-  </div>
 
-  <div class="field">
-    <%= form.label :read_number %>
-    <%= form.number_field :read_number, id: :article_read_number %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+  <div class="col-sm-10 col-sm-offset-2">
+    <%= f.button :submit, "提 交", class: "btn btn-primary" %>
+    <%= link_to "返 回", :back, class: "btn btn-default" %>
   </div>
 <% end %>
+
+
+
+
+
+<!-- # <%= form_with(model: article, local: true) do |form| %>
+#   <% if article.errors.any? %>
+#     <div id="error_explanation">
+#       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+#       <ul>
+#       <% article.errors.full_messages.each do |message| %>
+#         <li><%= message %></li>
+#       <% end %>
+#       </ul>
+#     </div>
+#   <% end %>
+
+#   <div class="field">
+#     <%= form.label :title %>
+#     <%= form.text_field :title, id: :article_title %>
+#   </div>
+#   <div class="field">
+#     <%= form.label "标签" %>
+#     <input type="text" name="label" >
+#   </div>
+#   <div class="field">
+#      <%= form.label "选择标签" %>
+#     <% @labels.each_with_index do |label, index| %>
+#       <input id="" name="checked_labels[<%= index %>]" type="checkbox" value="<%= label[1] %>" <%= article.labels.find(label[1]).nil? ? '' : 'checked' %> />
+#       <label for="pet_dog"><%= label[0] %></label>
+#     <% end %>
+#   </div>
+#   <div class="field">
+#     <%= form.label :content %>
+#     <%= form.text_area :content, id: :article_content %>
+#   </div>
+
+#   <div class="field">
+#     <%= form.label :from %>
+#     <%= form.text_field :from, id: :article_from %>
+#   </div>
+
+#   <div class="field">
+#     <%= form.label :url %>
+    # <%= form.text_field :url, id: :article_url %>
+#   </div>
+
+#   <div class="field">
+#     <%= form.label :read_number %>
+#     <%= form.number_field :read_number, id: :article_read_number %>
+#   </div>
+
+#   <div class="actions">
+#     <%= form.submit %>
+#   </div>
+# <% end %>
+ -->

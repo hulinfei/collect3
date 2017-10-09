@@ -1,16 +1,22 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_article, only: [:show,  :update, :destroy]
+  load_and_authorize_resource
+  layout 'admin'
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = current_user.articles.page params[:page]
+    @articles = current_user.articles.order_by( :created_at => 'desc')
+    @articles = @articles.where(title: /#{params[:title]}/) unless params[:title].blank? 
+    @articles = @articles.where(content: params[:content])  unless  params[:content].blank?
+    @articles = @articles.page params[:page]
   end
 
   # GET /articles/1
   # GET /articles/1.json
-  def show     
+  def show
+  #@article=Article.inc(read_number: 1)    
   end
 
   # GET /articles/new

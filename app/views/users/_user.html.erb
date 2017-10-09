@@ -1,0 +1,22 @@
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.username %></td>
+  <td><%= user.active %></td>
+  <td><img src="<%= user.avatar_url('40') %>" alt="" /></td>
+  <td><%= user.created_at %></td>
+  <td>
+  	<%= link_to "查看", user, class: "btn btn-default btn-xs" %>
+  	<% if can?(:update, User, itself: current_user)  %>
+    <%= link_to "修改", edit_user_path(user), class: "btn btn-default btn-xs" %>
+    <% end -%>
+    <% if can? :destroy, User, itself: current_user  %>
+    <%= link_to "删除", user_path(user), method: :delete, class: "btn btn-default btn-xs" %>
+    <% end -%>
+    <% if user.active %>
+      <%= link_to "取消激活", unactive_user_path(user, page: params[:page]), method: :put, class: "btn btn-danger btn-xs" %>
+    <% else %>
+      <%= link_to "激活", active_user_path(user, page: params[:page]), method: :put, class: "btn btn-success btn-xs" %>
+    <% end -%>
+ 
+  </td>
+</tr>

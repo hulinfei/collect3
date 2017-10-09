@@ -1,11 +1,24 @@
 class LabelsController < ApplicationController
-  before_action :set_lable, only: [:show, :edit, :update, :destroy]
+  before_action :set_label, only: [:show, :edit, :update, :destroy]
+   load_and_authorize_resource
+  layout 'admin'
 
   # GET /lables
   # GET /lables.json
   def index
     @labels = Label.all
   end
+
+  #排序
+    def descending
+      @labels = Label.all
+      @labels = @labels.order_by( :number => 'desc')
+      render :index
+    end
+
+    def ascending
+      @labels = @labels.order_by( :number => 'asc')
+    end
 
   # GET /lables/1
   # GET /lables/1.json
@@ -14,7 +27,7 @@ class LabelsController < ApplicationController
 
   # GET /lables/new
   def new
-    @lable = Lable.new
+    @label = Label.new
   end
 
   # GET /lables/1/edit
@@ -24,15 +37,15 @@ class LabelsController < ApplicationController
   # POST /lables
   # POST /lables.json
   def create
-    @lable = Lable.new(lable_params)
+    @label = Label.new(label_params)
 
     respond_to do |format|
-      if @lable.save
-        format.html { redirect_to @lable, notice: 'Lable was successfully created.' }
-        format.json { render :show, status: :created, location: @lable }
+      if @label.save
+        format.html { redirect_to @label, notice: 'Label was successfully created.' }
+        format.json { render :show, status: :created, location: @label }
       else
         format.html { render :new }
-        format.json { render json: @lable.errors, status: :unprocessable_entity }
+        format.json { render json: @label.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +54,12 @@ class LabelsController < ApplicationController
   # PATCH/PUT /lables/1.json
   def update
     respond_to do |format|
-      if @lable.update(lable_params)
-        format.html { redirect_to @lable, notice: 'Lable was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lable }
+      if @label.update(label_params)
+        format.html { redirect_to @label, notice: 'Label was successfully updated.' }
+        format.json { render :show, status: :ok, location: @label }
       else
         format.html { render :edit }
-        format.json { render json: @lable.errors, status: :unprocessable_entity }
+        format.json { render json: @label.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,21 +67,22 @@ class LabelsController < ApplicationController
   # DELETE /lables/1
   # DELETE /lables/1.json
   def destroy
-    @lable.destroy
+    @label.destroy
     respond_to do |format|
-      format.html { redirect_to lables_url, notice: 'Lable was successfully destroyed.' }
+      format.html { redirect_to labels_url, notice: 'Label was successfully destroyed.' }
       format.json { head :no_content }
     end
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_lable
-      @lable = Lable.find(params[:id])
+    def set_label
+      @label = Label.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def lable_params
-      params.require(:lable).permit(:name, :number)
+    def label_params
+      params.require(:label).permit(:name, :number)
     end
 end

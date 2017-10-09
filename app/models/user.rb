@@ -1,13 +1,14 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  ROLES = [:admin, :user]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  paginates_per 3
+  paginates_per 5
 
 
   ## Database authenticatable
@@ -29,12 +30,23 @@ class User
   field :last_sign_in_ip,    type: String
   # 用户名
   field :username, type: String
+  # 角色
+  field :role, type: String
+  field :active, type: Boolean, default: false
+
+
   # 用户密码
   # field :password, type: String
   
   has_many :articles
 
   mount_uploader :avatar, AvatarUploader
+
+
+
+  def admin?
+    role == 'admin'
+  end
 
   ## Confirmable
   # field :confirmation_token,   type: String

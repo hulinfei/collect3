@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-sm-4 text-left">
+    <small class="text-muted inline m-t-sm m-b-sm">共有<%= object.total_count %>个项目</small>
+  </div>
+  <div class="col-sm-8 text-right text-center-xs">
+    <%= paginate object, views_prefix: 'admin', theme: 'angulr' %>
+  </div>
+</div>

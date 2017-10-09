@@ -1,0 +1,10 @@
+<tr>
+  <td><%= label.name %></td>
+  <td><%= label.number %></td>
+  <td><%= label.created_at.strftime("%F") %></td>
+  <td>
+  	<%= link_to "查看", label, class: "btn btn-default btn-xs" %>
+    <%= link_to "修改", edit_label_path(label), class: "btn btn-default btn-xs" %>
+    <%= link_to "删除", label_path(label), method: :delete, class: "btn btn-default btn-xs" %>
+  </td>
+</tr>

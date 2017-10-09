@@ -1,29 +1,40 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Lables</h1>
-
-<table>
-  <thead>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Label列表
+    <div class="pull-right">
+      <%= link_to "新建标签", new_label_path, class: "btn btn-primary btn-xs" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
     <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th colspan="3"></th>
+      <th>标签名</th>
+      <th>
+      使用次数
+      
+      <a href="/labels/descending">
+          <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+        </a>
+      <a href="#">
+          <span class="glyphicon glyphicon-sort-by-attributes"></span>
+        </a>
+
+    </th>
+      <th style="width:120px;">创建时间</th>
+      <th>操作</th>
+   
     </tr>
   </thead>
+      <tbody>
+  
+    <%= render(@labels) %>
 
-  <tbody>
-    <% @labels.each do |label| %>
-      <tr>
-        <td><%= label.name %></td>
-        <td><%= label.number %></td>
-        <td><%= link_to 'Show', lable %></td>
-        <td><%= link_to 'Edit', edit_label_path(label) %></td>
-        <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Lable', new_label_path %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%#= render partial: "shared/admin/paginate", locals: { object: @labels } %>
+  </footer>
+</div>

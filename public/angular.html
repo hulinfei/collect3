@@ -1,0 +1,859 @@
+<html lang="en" class=""><head>
+    <meta charset="utf-8">
+    <title>【玉溪优惠券】后台管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/libs/assets/animate.css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="/libs/assets/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css">
+    <link rel="stylesheet" href="/libs/jquery/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/app.min.css" type="text/css">
+
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token" content="Mhx1eAVHi4dbqq4/2ypIDOlqAzZH7mOLMzSbMNN4re/J8QuOljnlBAdHIZaUuO7a2/VgkMh/hDP+Of25tUKFHQ==">
+    <link rel="stylesheet" type="text/css" href="//changji.b0.upaiyun.com/libs/jquery/chosen/bootstrap-chosen.css"></head>
+  <body>
+    <div class="app app-header-fixed ">
+      <!-- header -->
+      <header id="header" class="app-header navbar" role="menu">
+        <!-- navbar header -->
+        <div class="navbar-header bg-dark">
+          <button class="pull-right visible-xs dk" ui-toggle-class="show" target=".navbar-collapse">
+            <i class="glyphicon glyphicon-cog"></i>
+          </button>
+          <button class="pull-right visible-xs" ui-toggle-class="off-screen" target=".app-aside" ui-scroll="app">
+            <i class="glyphicon glyphicon-align-justify"></i>
+          </button>
+          <!-- brand -->
+          <div class="block m-l-sm m-t-sm">
+            <a href="/admin/home">
+              <h2>玉溪优惠券</h2>
+            </a>
+          </div>
+          <!-- / brand -->
+        </div>
+        <!-- / navbar header -->
+
+        <!-- navbar collapse -->
+        <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+
+          <!-- link and dropdown -->
+          <ul class="nav navbar-nav hidden-sm">
+            <li class="dropdown pos-stc">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <span>快捷菜单</span>
+                <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu wrapper w-full bg-white">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <ul class="list-unstyled l-h-2x">
+                          <li>
+                            <a href="/admin/coupons/expire"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>卡券批量操作</a>
+                          </li>
+                          <li>
+                            <a href="/admin/merchants/new"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>新建商户</a>
+                          </li>
+                          <li>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-xs-6">
+                        <ul class="list-unstyled l-h-2x">
+                          <li>
+                          </li>
+                          <li>
+                          </li>
+                          <li>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- / link and dropdown -->
+
+          <!-- search form -->
+          <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" data-target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="搜索">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </div>
+          </form>
+          <!-- / search form -->
+
+          <!-- nabar right -->
+          <ul class="nav navbar-nav navbar-right" id="merchant_not_yz">
+            <li class="dropdown" style="padding-bottom: 15px;padding-top: 15px">
+              <small>qwe02.top</small>
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <i class="icon-bell fa-fw"></i>
+                <span class="visible-xs-inline">通知消息</span>
+
+              </a>
+              <!-- dropdown -->
+              <div class="dropdown-menu w-xl animated fadeInUp">
+                <div class="panel bg-white notice_div">
+                  <div class="panel-heading b-light bg-light">
+                    <strong>你有<span class="notice_count">0</span>条未验证信息</strong>
+                  </div>
+
+                </div>
+              </div>
+              <!-- / dropdown -->
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle clear">
+                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                  <img src="/img/a0.jpg" alt="...">
+                  <i class="on md b-white bottom"></i>
+                </span>
+                <span class="hidden-sm hidden-md">yxyhq@xj8.net</span> <b class="caret"></b>
+              </a>
+              <!-- dropdown -->
+              <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                  <a rel="nofollow" data-method="delete" href="/managers/sign_out">退出登录</a>
+                </li>
+              </ul>
+              <!-- / dropdown -->
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle clear" rel="nofollow" data-method="delete" href="/managers/sign_out">登出</a>
+            </li>
+          </ul>
+          <!-- / navbar right -->
+        </div>
+        <!-- / navbar collapse -->
+      </header>
+
+
+      <!-- / header -->
+      <!-- aside -->
+      <aside id="aside" class="app-aside app-aside-fixed hidden-xs bg-dark">
+
+        <div class="aside-wrap">
+          <div class="navi-wrap">
+
+            <!-- nav -->
+            <nav ui-nav="" class="navi clearfix">
+              <ul class="nav">
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                  <span>导航</span>
+                </li>
+                <li class="">
+                  <a href="/admin/home" class="auto">
+                    <i class="glyphicon glyphicon-stats icon text-primary"></i>
+                    <span class="font-bold">控制面板</span>
+                  </a>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                  <span>平台管理</span>
+                </li>
+                <li class="">
+                  <a href="/admin/sites/58a1b239d2a361329f0dde51/edit" class="auto">
+                    <i class="fa fa-institution"></i>
+                    <span>站点管理</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="/admin/coupon_checker" class="auto">
+                    <i class="fa fa-institution"></i>
+                    <span>外部验证接口</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="/admin/merchants" class="auto">
+                    <i class="fa fa-institution"></i>
+                    <span>商户管理</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="/admin/promotions" class="auto">
+                    <i class="fa fa-bullhorn"></i>
+                    <span>活动管理</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="/admin/coupons" class="auto">
+                    <i class="glyphicon glyphicon-credit-card"></i>
+                    <span>卡券管理</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="/admin/bannars" class="auto">
+                    <i class="fa fa-institution"></i>
+                    <span>广告管理</span>
+                  </a>
+                </li>
+
+
+                <li class="">
+                  <a href="" class="auto">
+                    <span class="pull-right text-muted">
+                      <i class="fa fa-fw fa-angle-right text"></i>
+                      <i class="fa fa-fw fa-angle-down text-active"></i>
+                    </span>
+                    <i class="fa fa-users"></i>
+                    <span>用户管理</span>
+                  </a>
+                  <ul class="nav nav-sub dk">
+                    <li class="">
+                      <a href="/admin/users">
+                        <span>用户列表</span>
+                      </a>
+                    </li>
+                    <li class="">
+                      <a href="/admin/suggestions">
+                        <span>用户意见</span>
+                      </a>
+                    </li>
+                    <li class="">
+                      <a href="/admin/messages" class="auto">
+                        <span>站内信管理</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <!-- <li class=""> -->
+                <!--   <a href="/admin/weeklies" class="auto"> -->
+                <!--     <i class="glyphicon glyphicon&#45;cutlery"></i> -->
+                <!--     <span>美食周刊</span> -->
+                <!--   </a> -->
+                <!-- </li> -->
+
+                <li class="">
+                  <a href="" class="auto">
+                    <span class="pull-right text-muted">
+                      <i class="fa fa-fw fa-angle-right text"></i>
+                      <i class="fa fa-fw fa-angle-down text-active"></i>
+                    </span>
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                    <span>积分商城</span>
+                  </a>
+                  <ul class="nav nav-sub dk">
+                    <li>
+                      <a href="/admin/items" class="">
+                        <span>商品管理</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/admin/items/new_coupon_type">优惠券设置</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="">
+                  <a href="" class="auto">
+                    <span class="pull-right text-muted">
+                      <i class="fa fa-fw fa-angle-right text"></i>
+                      <i class="fa fa-fw fa-angle-down text-active"></i>
+                    </span>
+                    <i class="glyphicon glyphicon-piggy-bank"></i>
+                    <span>在线购物</span>
+                  </a>
+                  <ul class="nav nav-sub dk">
+                    <li>
+                      <a href="/admin/commodities" class="">
+                        <span>商品管理</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/admin/commodity_orders" class="">
+                        <span>订单管理</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="">
+                  <a href="/admin/clouds" class="auto">
+                    <i class="glyphicon glyphicon-cloud"></i>
+                    <span>云统计</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a class="auto" href="/admin/sms_logs">
+                    <i class="fa fa-envelope"></i>
+                    <span>短信记录</span>
+                  </a>            </li>
+
+                  <!-- <li class=""> -->
+                  <!--   <a href class="auto"> -->
+                  <!--     <span class="pull&#45;right text&#45;muted"> -->
+                  <!--       <i class="fa fa&#45;fw fa&#45;angle&#45;right text"></i> -->
+                  <!--       <i class="fa fa&#45;fw fa&#45;angle&#45;down text&#45;active"></i> -->
+                  <!--     </span> -->
+                  <!--     <i class="glyphicon glyphicon&#45;shopping&#45;cart"></i> -->
+                  <!--     <span>美团数据</span> -->
+                  <!--   </a> -->
+                  <!--   <ul class="nav nav&#45;sub dk"> -->
+                  <!--     <li> -->
+                  <!--       <a href="/admin/merchant_addrs" class=""> -->
+                  <!--         <span>商户信息</span> -->
+                  <!--       </a> -->
+                  <!--     </li> -->
+                  <!--     <li> -->
+                  <!--       <a href="/admin/merchant_sales" class=""> -->
+                  <!--         <span>商户信息</span> -->
+                  <!--       </a> -->
+                  <!--     </li> -->
+                  <!--   </ul> -->
+                  <!-- </li> -->
+                  <!--  -->
+                  <!-- <li class="line dk"></li> -->
+
+                  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span>公众号管理</span>
+                  </li>
+                  <li class="">
+                    <a href="" class="auto">
+                      <span class="pull-right text-muted">
+                        <i class="fa fa-fw fa-angle-right text"></i>
+                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                      </span>
+                      <i class="fa fa-users"></i>
+                      <span>微信功能</span>
+                    </a>
+                    <ul class="nav nav-sub dk">
+                      <li class="">
+                        <a href="/admin/mp_media">
+                          <span>图文消息管理</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul class="nav nav-sub dk">
+                      <li class="">
+                        <a href="/admin/send_logs">
+                          <span>群发日志</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul class="nav nav-sub dk">
+                      <li class="">
+                        <a href="/admin/wx/qr_codes">
+                          <span>活动二维码生成</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul class="nav nav-sub dk">
+                      <li class="">
+                        <a href="/admin/wx/create_menu">
+                          <span>生成微信菜单</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="line dk hidden-folded"></li>
+              </ul>
+            </nav>
+            <!-- nav -->
+
+            <!-- aside footer -->
+            <div class="wrapper m-t">
+              <div class="text-center-folded">
+                <span class="pull-right pull-none-folded" id="subscribe_count">570</span>
+                <span class="hidden-folded">用户关注数</span>
+              </div>
+              <div class="text-center-folded">
+                <span class="pull-right pull-none-folded" id="like_count">2</span>
+                <span class="hidden-folded">用户点赞</span>
+              </div>
+              <div class="progress progress-xxs m-t-sm dk">
+                <div class="progress-bar progress-bar-info" style="width: 0%;">
+                </div>
+              </div>
+              <div class="text-center-folded">
+                <span class="pull-right pull-none-folded sms_count">937</span>
+                <span class="hidden-folded">短信使用量</span>
+              </div>
+              <!-- <div class="text&#45;center&#45;folded"> -->
+              <!--   <span class="pull&#45;right pull&#45;none&#45;folded sms_balance">Loading</span> -->
+              <!--   <span class="hidden&#45;folded">剩余短信量</span> -->
+              <!-- </div> -->
+            </div>
+            <!-- / aside footer -->
+          </div>
+        </div>
+      </aside>
+
+
+
+      <!-- / aside -->
+      <!-- content -->
+      <div id="content" class="app-content" role="main">
+        <div class="app-content-body ">
+
+          <div class="bg-light lter b-b wrapper-md" id="title-content">
+            <h1 class="m-n font-thin h3">商家管理</h1>
+          </div>
+
+          <div class="wrapper-md">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                商户列表
+                <div class="pull-right">
+                  <a class="btn btn-primary btn-xs" href="/admin/merchants/new">新建商户</a>
+                </div>
+                <div class="row wrapper">
+                  <form action="" method="get">
+                    <div class="col-sm-5 m-b-xs">
+                      商家:
+                      <select ui-jq="chosen" name="merchant_id" data-placeholder="选择商家" style="width: 200px; display: none;" class="chosen-select input-sm w-sm  v-middle ">
+                        <option value="">全部</option>
+                        <option value="58a4bc1ad2a3614e23450353">成都老妈砂锅串串</option>
+                        <option value="58a4afa4d2a3614e214b7cbe">玩真的主题音乐烤吧</option>
+                        <option value="58a49d61d2a3614e23450314">七婆串串香火锅最新推出鸡套餐</option>
+                        <option value="58a1e6a7d2a361329f0ddee0">享烤享涮自助火锅烤肉</option>
+                        <option value="58a1e2a1d2a361345e1ce79c">大龍燊·旺角天空火锅馆</option>
+                      </select><div class="chosen-container chosen-container-single" style="width: 200px;" title=""><a class="chosen-single" tabindex="-1"><span>全部</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+
+                      <button class="btn btn-sm btn-default">确认</button>
+                    </div>
+                  </form>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-3">
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                  <thead>
+                    <tr>
+                      <th>店名</th>
+                      <th>联系人</th>
+                      <th>电话</th>
+                      <th>地址</th>
+                      <th>验证密码</th>
+                      <th style="width:120px;">创建时间</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>成都老妈砂锅串串</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>984771</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4bc1ad2a3614e23450353/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4bc1ad2a3614e23450353">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4bc1ad2a3614e23450353">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>玩真的主题音乐烤吧</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>055837</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a4afa4d2a3614e214b7cbe/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a4afa4d2a3614e214b7cbe">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a4afa4d2a3614e214b7cbe">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a4afa4d2a3614e214b7cbe">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a4afa4d2a3614e214b7cbe">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>七婆串串香火锅最新推出鸡套餐</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>668460</td>
+                      <td>2017-02-16</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a49d61d2a3614e23450314/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a49d61d2a3614e23450314">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a49d61d2a3614e23450314">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a49d61d2a3614e23450314">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a49d61d2a3614e23450314">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>享烤享涮自助火锅烤肉</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>363858</td>
+                      <td>2017-02-14</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a1e6a7d2a361329f0ddee0/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a1e6a7d2a361329f0ddee0">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a1e6a7d2a361329f0ddee0">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a1e6a7d2a361329f0ddee0">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a1e6a7d2a361329f0ddee0">新建砍价活动</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>大龍燊·旺角天空火锅馆</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>967439</td>
+                      <td>2017-02-14</td>
+                      <td>
+                        <a class="btn btn-default btn-xs" href="/admin/merchants/58a1e2a1d2a361345e1ce79c/edit">修改</a>
+                        <a data-confirm="确认要删除吗？" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/admin/merchants/58a1e2a1d2a361345e1ce79c">删除</a>
+                        <a class="btn btn-success btn-xs" href="/admin/promotions/new?merchant_id=58a1e2a1d2a361345e1ce79c">新建普通活动</a>
+                        <a class="btn btn-danger btn-xs" href="/admin/scan_promotions/new?merchant_id=58a1e2a1d2a361345e1ce79c">新建助力活动</a>
+                        <a class="btn btn-info btn-xs" href="/admin/cut_promotions/new?merchant_id=58a1e2a1d2a361345e1ce79c">新建砍价活动</a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <footer class="panel-footer">
+                <div class="row">
+                  <div class="col-sm-4 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">共有5个项目</small>
+                  </div>
+                  <div class="col-sm-8 text-right text-center-xs">
+
+                  </div>
+                </div>
+              </footer>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- /content -->
+      <!-- footer -->
+  
+
+      <!-- / footer -->
+    </div>
+    <script src="/libs/jquery/jquery/dist/jquery.min.js"></script>
+    <script src="/libs/jquery/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/ui-load.js"></script>
+    <script src="/js/ui-jp.config.js"></script>
+    <script src="/js/ui-jp.js"></script>
+    <script src="/js/ui-nav.js"></script>
+    <script src="/js/ui-toggle.js"></script>
+    <script src="/js/ui-client.js"></script>
+    <script src="/js/rails.js"></script>
+    <script src="/js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/vue-resource.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//changji.b0.upaiyun.com/libs/jquery/chosen/chosen.jquery.min.js"></script></body><div id="cVim-status-bar" style="top: 0px;"></div><iframe src="chrome-extension://ihlenndgcmojhcghmfjfneahoeklbjjh/cmdline_frame.html" id="cVim-command-frame"></iframe></html>

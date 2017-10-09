@@ -1,30 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <form action="/managers" method="get">
+  email<input type="text" id="email" name="email" value="<%= params[:email] %>">
+  username<input type="text" id="username" name="username" value="<%= params[:username] %>">
+  <input type="submit" name="" value="搜索">
+  </form>
+  <div class="panel-heading">
+    用户列表
+    <div class="pull-right">
+      <%= link_to "新建user", new_user_path, class: "btn btn-primary btn-xs" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+      <thead>
+        <tr>
+          <th>邮箱</th>
+          <th>用户名</th>
+          <th>状态</th>
+          <th>图片</th>
+          <th style="width:120px;">创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render(@users) %>
+      </tbody>
+    </table>
+  </div>
+  <footer class="panel-footer">
+    <%#= paginate @users, views_prefix: 'admin', theme: 'angulr' %>
+    <%= render partial: "shared/admin/paginate", locals: { object: @users } %>
+  </footer>
+</div>
+<script type="text/javascript">
+  function search() {
+    var username = $('#username').val()
+    window.location.href = '/managers/?username=' + username
+  }
+</script>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-       <th>Email</th>
-      <th>Username</th>
-      <th>Password</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.username %></td>
-        <td><%= user.encrypted_password %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<%= link_to 'New User', new_user_path %>

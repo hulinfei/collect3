@@ -1,0 +1,148 @@
+<header id="header" class="app-header navbar" role="menu">
+  <!-- navbar header -->
+  <div class="navbar-header bg-dark">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" target=".navbar-collapse">
+      <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" target=".app-aside" ui-scroll="app">
+      <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+    <!-- brand -->
+    <div class="block m-l-sm m-t-sm">
+      <a href="/admin/home" >
+        <h2><%= @current_site&.name || "文章采集" %></h2>
+      </a>
+    </div>
+    <!-- / brand -->
+  </div>
+  <!-- / navbar header -->
+
+  <!-- navbar collapse -->
+  <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+
+    <!-- link and dropdown -->
+    <ul class="nav navbar-nav hidden-sm">
+      <li class="dropdown pos-stc">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+          <span>快捷菜单</span>
+          <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu wrapper w-full bg-white">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-xs-6">
+                  <ul class="list-unstyled l-h-2x">
+                    <li>
+                      <a href="/admin/coupons/expire"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>卡券批量操作</a>
+                    </li>
+                    <li>
+                      <a href="/users/new"><i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>新建用户</a>
+                    </li>
+                    <li>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-xs-6">
+                  <ul class="list-unstyled l-h-2x">
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- / link and dropdown -->
+
+    <!-- search form -->
+    <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" data-target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="搜索">
+          <span class="input-group-btn">
+            <button type="submit"  class="btn btn-sm bg-light rounded">
+
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <!-- / search form -->
+
+    <!-- nabar right -->
+    <ul class="nav navbar-nav navbar-right" id="merchant_not_yz">
+      <li class="dropdown" style="padding-bottom: 15px;padding-top: 15px">
+        <small><%= @current_site&.domain || "" %></small>
+      </li>
+      <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+          <i class="icon-bell fa-fw"></i>
+          <span class="visible-xs-inline">通知消息</span>
+          <span class="badge badge-sm up bg-danger pull-right-xs" v-if="not_yz_users.length > 0">{{not_yz_users.length}}</span>
+        </a>
+        <!-- dropdown -->
+        <div class="dropdown-menu w-xl animated fadeInUp">
+          <div class="panel bg-white notice_div">
+            <div class="panel-heading b-light bg-light">
+              <strong>你有<span class="notice_count">{{not_yz_users.length}}</span>条未验证信息</strong>
+            </div>
+            <div class="list-group" v-for="user in not_yz_users">
+              <a href="/admin/merchants/{{user.merchant_id}}/edit" class="list-group-item">
+                <span class="pull-left m-r thumb-sm">
+                  <img :src="user.headimg" alt="..." class="img-circle">
+                </span>
+                <span class="clear block m-b-none">
+                  {{user.merchant_name}}<br>
+                  <small class="text-muted">{{user.username}}申请验证员审核</small>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- / dropdown -->
+      </li>
+      <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
+          <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+            <img src="<%= @current_user.avatar %>" alt="...">
+            <i class="on md b-white bottom"></i>
+          </span>
+          <span class="hidden-sm hidden-md"><%= current_user.email %></span> <b class="caret"></b>
+        </a>
+        <!-- dropdown -->
+        <ul class="dropdown-menu animated fadeInRight w">
+          <li>
+            <%= link_to "退出登录", destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+        <!-- / dropdown -->
+      </li>
+      <li class="dropdown">
+        <%= link_to "登出", destroy_user_session_path, {method: :delete, class: "dropdown-toggle clear"} %>
+      </li>
+    </ul>
+    <!-- / navbar right -->
+  </div>
+  <!-- / navbar collapse -->
+</header>
+
+<%= content_for :script do %>
+  <script>
+var App = new Vue({
+  el: '#merchant_not_yz',
+  data: {
+    not_yz_users: [], // my list for the v-for
+  },
+  created: function () {
+  },
+});
+  </script>
+<% end %>

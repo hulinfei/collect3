@@ -1,0 +1,149 @@
+<aside id="aside" class="app-aside app-aside-fixed hidden-xs bg-dark">
+
+  <div class="aside-wrap">
+    <div class="navi-wrap">
+
+      <!-- nav -->
+      <nav ui-nav class="navi clearfix">
+        <ul class="nav">
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>导航</span>
+          </li>
+          <li class="<%= "active" if controller_name == "home" %>">
+            <a href="/admin/home" class="auto">
+              <i class="glyphicon glyphicon-stats icon text-primary"></i>
+              <span class="font-bold">控制面板</span>
+            </a>
+          </li>
+          <li class="line dk"></li>
+          <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+            <span>平台管理</span>
+          </li>
+          <% if can? :edit, current_manager.site %>
+            <li class="<%= "active" if controller_name == "sites" %>">
+              <a href="/admin/sites/<%= current_manager.site.id %>/edit" class="auto">
+                <i class="fa fa-institution"></i>
+                <span>站点管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Site %>
+            <li class="<%= "active" if controller_name == "sites" %>">
+              <a href="/admin/sites" class="auto">
+                <i class="fa fa-institution"></i>
+                <span>多站点管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Manager %>
+            <li class="<%= "active" if controller_name == "managers" %>">
+              <a href="/admin/managers" class="auto">
+                <i class="fa fa-institution"></i>
+                <span>管理员帐号</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, MerchantAddress %>
+            <li class="<%= "active" if controller_name == "merchant_addresses" %>">
+              <a href="/admin/merchant_addresses" class="auto">
+                <i class="fa fa-institution"></i>
+                <span>商户地址管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Promotion %>
+            <li class="<%= "active" if controller_name == "promotions" %>">
+              <a href="/admin/promotions" class="auto">
+                <i class="fa fa-bullhorn"></i>
+                <span>活动管理</span>
+              </a>
+            </li>
+          <% end %>
+          <% if can? :manage, Coupon %>
+            <li class="<%= "active" if controller_name == "coupons" %>">
+              <a href="/admin/coupons" class="auto">
+                <i class="glyphicon glyphicon-credit-card"></i>
+                <span>卡券管理</span>
+              </a>
+            </li>
+          <% end %>
+
+          <% if can? :manage, User %>
+            <li class="<%= "active" if controller_name == "users" %>">
+              <a href="/admin/users" class="auto">
+                <i class="fa fa-users"></i>
+                <span>用户管理</span>
+              </a>
+            </li>
+          <% end %>
+
+          <% if current_manager.role == "admin" %>
+            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+              <span>公众号管理</span>
+            </li>
+            <li class="<%= "active" if controller_name == "wx" || controller_name == "wx" %>">
+              <a href class="auto">
+                <span class="pull-right text-muted">
+                  <i class="fa fa-fw fa-angle-right text"></i>
+                  <i class="fa fa-fw fa-angle-down text-active"></i>
+                </span>
+                <i class="fa fa-users"></i>
+                <span>微信功能</span>
+              </a>
+              <% if can? :manage, MpMedium %>
+                <ul class="nav nav-sub dk">
+                  <li class="<%= "active" if controller_name == "mp_media" %>">
+                    <a href="/admin/mp_media">
+                      <span>图文消息管理</span>
+                    </a>
+                  </li>
+                </ul>
+              <% end %>
+              <% if can? :manage, SendLog %>
+                <ul class="nav nav-sub dk">
+                  <li class="<%= "active" if controller_name == "send_logs" %>">
+                    <a href="/admin/send_logs">
+                      <span>群发日志</span>
+                    </a>
+                  </li>
+                </ul>
+              <% end %>
+              <% if can? :manage, QrCode %>
+                <ul class="nav nav-sub dk">
+                  <li class="<%= "active" if controller_name == "qr_codes" %>">
+                    <a href="/admin/wx/qr_codes">
+                      <span>活动二维码生成</span>
+                    </a>
+                  </li>
+                </ul>
+              <% end %>
+              <ul class="nav nav-sub dk">
+                <li class="<%= "active" if controller_name == "wx" %>">
+                  <a href="/admin/wx/create_menu">
+                    <span>生成微信菜单</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="line dk hidden-folded"></li>
+          <% end %>
+          <% if current_manager.role == "super_admin" %>
+            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+              <span>其他</span>
+            </li>
+            <li class="">
+              <a href="/admin/sidekiq" target="_blank" class="auto">
+                <i class="glyphicon glyphicon-tasks"></i>
+                <span>后台任务</span>
+              </a>
+            </li>
+            <li class="line dk hidden-folded"></li>
+          <% end %>
+        </ul>
+      </nav>
+      <!-- nav -->
+
+      <!-- / aside footer -->
+    </div>
+  </div>
+</aside>
