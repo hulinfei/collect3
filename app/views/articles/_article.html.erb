@@ -1,6 +1,6 @@
 <tr>
   <td><%= article.title %></td>
-  <td><%= article.content %></td>
+  <td ><%= raw article.content %></td>
   <td><%= article.from %></td>
   <td><%= article.url %></td>
   <td><%= article.read_number %></td>
@@ -11,3 +11,4 @@
     <%= link_to "删除", article_path(article), method: :delete, class: "btn btn-default btn-xs" %>
   </td>
 </tr>
+

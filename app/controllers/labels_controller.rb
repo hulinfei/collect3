@@ -6,18 +6,36 @@ class LabelsController < ApplicationController
   # GET /lables
   # GET /lables.json
   def index
-    @labels = Label.all
+    @labels = Label.all.page params[:page]
   end
 
   #排序
     def descending
-      @labels = Label.all
+      @labels = Label.all.page params[:page]
       @labels = @labels.order_by( :number => 'desc')
       render :index
     end
 
     def ascending
+      @labels = Label.all.page params[:page]
       @labels = @labels.order_by( :number => 'asc')
+      render :index
+    end
+
+    def forbid
+      @label.update(forbid: true)
+      respond_to do |format|
+      format.html { redirect_to labels_path(page: params[:page]), notice: '禁用成功！' }
+      format.json { head :no_content }
+      end
+    end
+
+    def permit
+      @label.update(forbid: false)
+      respond_to do |format|
+      format.html { redirect_to labels_path(page: params[:page]), notice: '取消禁用成功！' }
+      format.json { head :no_content }
+      end
     end
 
   # GET /lables/1

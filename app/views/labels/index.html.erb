@@ -17,11 +17,11 @@
       <a href="/labels/descending">
           <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
         </a>
-      <a href="#">
+      <a href="/labels/ascending">
           <span class="glyphicon glyphicon-sort-by-attributes"></span>
         </a>
-
     </th>
+      <th>状态</th>
       <th style="width:120px;">创建时间</th>
       <th>操作</th>
    
@@ -35,6 +35,6 @@
     </table>
   </div>
   <footer class="panel-footer">
-    <%#= render partial: "shared/admin/paginate", locals: { object: @labels } %>
+    <%= render partial: "shared/admin/paginate", locals: { object: @labels } %>
   </footer>
 </div>

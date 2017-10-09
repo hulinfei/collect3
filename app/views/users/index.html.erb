@@ -1,13 +1,16 @@
 <div class="panel panel-default">
   <form action="/managers" method="get">
-  email<input type="text" id="email" name="email" value="<%= params[:email] %>">
+  email<input type="text" id="email" name="email" calss="input-group" value="<%= params[:email] %>">
   username<input type="text" id="username" name="username" value="<%= params[:username] %>">
   <input type="submit" name="" value="搜索">
   </form>
   <div class="panel-heading">
     用户列表
     <div class="pull-right">
-      <%= link_to "新建user", new_user_path, class: "btn btn-primary btn-xs" %>
+      <%= link_to "新建用户", new_user_path, class: "btn btn-primary btn-xs" %>
+    </div>
+    <div class="pull-right">
+      <%= link_to "一键激活", activeall_users_path, method: :put , class: "btn btn-success btn-xs" %>
     </div>
   </div>
   <div class="table-responsive">

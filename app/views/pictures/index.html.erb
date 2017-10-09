@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Pictures</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg" />
+    </div>
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg" />
+    </div>
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg" />
+    </div>
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg"/>
+    </div>
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg"/>
+    </div>
+    <div class="col-md-2 column">
+      <img alt="140x140" src="/images/a0.jpg" />
+    </div>
+  </div>
+</div>
 
 <%= link_to 'New Picture', new_picture_path %>

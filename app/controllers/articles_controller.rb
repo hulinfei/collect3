@@ -16,7 +16,11 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-  #@article=Article.inc(read_number: 1)    
+    #阅读数+1
+   # @article.inc(read_number: 1)
+    @pictures = @article.pictures
+    @picture = @article.pictures.build
+
   end
 
   # GET /articles/new

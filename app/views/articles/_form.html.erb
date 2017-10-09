@@ -6,12 +6,19 @@
       <div class="col-sm-10">
         <% @labels.each_with_index do |label, index| %>
       <input id="" name="checked_labels[<%= index %>]" type="checkbox" value="<%= label[1] %>" <%= article.labels.find(label[1]).nil? ? '' : 'checked' %> />
-      <label for="pet_dog"><%= label[0] %></label>
+      <label for="pet_dog"><%= raw label[0] %></label>
     <% end %>
       </div>
   </div>
-
-  <%= f.input :content, label: "文章内容" %>
+ <div class="form-group text required page_content">
+    <label class="text  col-sm-2 control-label" for="page_content">
+      文章内容
+    </label>
+    <div class="col-sm-10">
+      <script type="text/plain" id="contentEditor" name="article[content]" id="article_content" style="width:800px;height:300px;"><%= raw(@article.content) %></script>
+    </div>
+  </div>
+  <%= f.input :avatar, label: "图片" %>
   <%= f.input :from, label: "来源" %>
   <%= f.input :url, label: "链接" %>
   <%= f.input :read_number, label: "阅读数" %>
@@ -24,60 +31,15 @@
   </div>
 <% end %>
 
+<%= content_for :style do %>
+  <link href="/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<% end %>
 
-
-
-
-<!-- # <%= form_with(model: article, local: true) do |form| %>
-#   <% if article.errors.any? %>
-#     <div id="error_explanation">
-#       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-#       <ul>
-#       <% article.errors.full_messages.each do |message| %>
-#         <li><%= message %></li>
-#       <% end %>
-#       </ul>
-#     </div>
-#   <% end %>
-
-#   <div class="field">
-#     <%= form.label :title %>
-#     <%= form.text_field :title, id: :article_title %>
-#   </div>
-#   <div class="field">
-#     <%= form.label "标签" %>
-#     <input type="text" name="label" >
-#   </div>
-#   <div class="field">
-#      <%= form.label "选择标签" %>
-#     <% @labels.each_with_index do |label, index| %>
-#       <input id="" name="checked_labels[<%= index %>]" type="checkbox" value="<%= label[1] %>" <%= article.labels.find(label[1]).nil? ? '' : 'checked' %> />
-#       <label for="pet_dog"><%= label[0] %></label>
-#     <% end %>
-#   </div>
-#   <div class="field">
-#     <%= form.label :content %>
-#     <%= form.text_area :content, id: :article_content %>
-#   </div>
-
-#   <div class="field">
-#     <%= form.label :from %>
-#     <%= form.text_field :from, id: :article_from %>
-#   </div>
-
-#   <div class="field">
-#     <%= form.label :url %>
-    # <%= form.text_field :url, id: :article_url %>
-#   </div>
-
-#   <div class="field">
-#     <%= form.label :read_number %>
-#     <%= form.number_field :read_number, id: :article_read_number %>
-#   </div>
-
-#   <div class="actions">
-#     <%= form.submit %>
-#   </div>
-# <% end %>
- -->
+<% content_for :script do %>
+  <script type="text/javascript" charset="utf-8" src="/umeditor/umeditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/umeditor/umeditor.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/umeditor/lang/zh-cn/zh-cn.js"></script>
+  <script type="text/javascript">
+    var um1 = UM.getEditor('contentEditor');
+  </script>
+<% end %>

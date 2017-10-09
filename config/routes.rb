@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :pictures
-  resources :articles
+  
+  resources :articles do
+    resources :pictures, shallow: true
+  end
   resources :labels do
+    member do
+      put 'forbid'
+      put 'permit'
+    end
   	collection do
   		get 'descending'
   		get 'ascending'
@@ -15,8 +21,8 @@ Rails.application.routes.draw do
   		put 'unactive'
   	end
   	collection do
-  		put 'active_all'
-  		put 'unactive_all'
+  		put 'activeall'
+  		put 'unactiveall'
   	end
   end
 

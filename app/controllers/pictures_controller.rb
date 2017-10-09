@@ -1,22 +1,9 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
-   load_and_authorize_resource
+  before_action :set_picture, only: [ :edit, :update, :destroy]
+  load_and_authorize_resource
+  layout 'admin'
 
-  # GET /pictures
-  # GET /pictures.json
-  def index
-    @pictures = Picture.all
-  end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
-  def show
-  end
-
-  # GET /pictures/new
-  def new
-    @picture = Picture.new
-  end
 
   # GET /pictures/1/edit
   def edit
@@ -25,11 +12,13 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(picture_params)
+    @article = Article.find(params[:article_id])
+
+    @picture = @article.pictures.new(picture_params)
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+        format.html { redirect_to article_path(@article), notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new }
@@ -43,7 +32,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        format.html { redirect_to article_path(Article.find(params[:article_id])), notice: 'Picture was successfully updated.' }
         format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -57,7 +46,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+      format.html { redirect_to article_path(Article.find(params[:article_id])), notice: 'Picture was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,11 +54,10 @@ class PicturesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
-      @picture = Picture.find(params[:id])
+      @picture = Article.find(params[:article_id]).pictures.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.fetch(:picture, {})
+      params.require(:picture).permit(:image)
     end
 end

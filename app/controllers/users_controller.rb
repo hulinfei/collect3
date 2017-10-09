@@ -14,10 +14,15 @@ class UsersController < ApplicationController
     @users = @users.page params[:page]
   end
 
+  def activeall
+    User.update_all(active: true)
+    redirect_to users_path, notice: '用户已经全部激活！.'
+  end
+
   def active
     @user.update(active: true)
     respond_to do |format|
-      format.html { redirect_to users_path(page: params[:page]), notice: 'user was successfully actived.' }
+      format.html { redirect_to users_path(page: params[:page]), notice: '激活成功！' }
       format.json { head :no_content }
     end
   end
@@ -25,7 +30,7 @@ class UsersController < ApplicationController
   def unactive
     @user.update(active: false)
     respond_to do |format|
-      format.html { redirect_to users_path(page: params[:page]), notice: 'user was successfully unactived.' }
+      format.html { redirect_to users_path(page: params[:page]), notice: '取消激活成功！' }
       format.json { head :no_content }
     end
   end

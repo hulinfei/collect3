@@ -21,7 +21,7 @@
     
           <li class="<%= "active" if controller_name == "sites" %>">
               <a href="/articles" class="auto">
-                <i class="fa fa-institution"></i>
+                <i class="glyphicon glyphicon-book"></i>
                 <span>文章管理</span>
               </a>
           </li>
@@ -30,7 +30,7 @@
 
           <li class="<%= "active" if controller_name == "managers" %>">
                 <a href="/managers" class="auto">
-                  <i class="fa fa-institution"></i>
+                  <i class="glyphicon glyphicon-user"></i>
                   <span>账号管理</span>
                 </a>
           </li>
@@ -38,11 +38,18 @@
             <% if can? :read, Label %>
           <li class="<%= "active" if controller_name == "labels" %>">
                 <a href="/labels" class="auto">
-                  <i class="fa fa-institution"></i>
+                  <i class="glyphicon glyphicon-tags"></i>
                   <span>标签管理</span>
                 </a>
           </li>
           <% end %>
+
+          <li class="<%= "active" if controller_name == "labels" %>">
+                <a href="/pictures" class="auto">
+                  <i class="glyphicon glyphicon-picture"></i>
+                  <span>图片管理</span>
+                </a>
+          </li>
 
 
         </ul>
