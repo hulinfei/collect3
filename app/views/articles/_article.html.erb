@@ -1,14 +1,16 @@
 <tr>
-  <td><%= article.title %></td>
-  <td ><%= raw article.content %></td>
-  <td><%= article.from %></td>
-  <td><%= article.url %></td>
+  <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.title %></td>
+  <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.content %></td>
+  <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.from %></td>
+  <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+    <a href="<%= article.url %>" target="view_window"><%= article.url %></a></td>
   <td><%= article.read_number %></td>
-  <td><%= article.created_at %></td>
+  <td><%= article.created_at.strftime("%F %T") %></td>
   <td>
   	<%= link_to "查看", article, class: "btn btn-default btn-xs" %>
     <%= link_to "修改", edit_article_path(article), class: "btn btn-default btn-xs" %>
     <%= link_to "删除", article_path(article), method: :delete, class: "btn btn-default btn-xs" %>
   </td>
 </tr>
+
 

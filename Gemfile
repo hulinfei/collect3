@@ -58,3 +58,5 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'carrierwave-upyun'
 gem 'simple_form'
 gem 'cancancan', '~> 2.0'
+gem 'devise-i18n'
+

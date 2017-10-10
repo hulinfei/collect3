@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!
   before_action :set_article, only: [:show,  :update, :destroy]
   load_and_authorize_resource
   layout 'admin'

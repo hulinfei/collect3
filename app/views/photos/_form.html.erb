@@ -1,0 +1,20 @@
+<%= simple_form_for(@photo, url: photo_path(@photo), html: { multipart: true, class: "form-horizontal" }) do |f| %>
+  <img src="<%= @photo.image.url('40') %>">
+    <input type="file" name="photo[image]">
+
+  <%#= f.input :image, label: "图片" %>
+  <div class="col-sm-10 col-sm-offset-2">
+    <%= f.button :submit, "提 交", class: "btn btn-primary" %>
+    <%= link_to "返 回", :back, class: "btn btn-default" %>
+  </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+
+<% end %>
+
+
+<form action="<%= photo_path(@photo) %>" method="post" enctype="multipart/form-data">
+<input type="file" name="photo[image]">
+<input type="hidden" name="_method" value="PUT">
+<input type="submit" name="">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>

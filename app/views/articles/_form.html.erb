@@ -1,5 +1,6 @@
 <%= simple_form_for(@article, html: { multipart: true, class: "form-horizontal" }) do |f| %>
   <%= f.input :title, label: "文章标题" %>
+  <%#= f.input :name, title: "新建标签" %>
   <div class="form-group string required article_title">
     <label class="col-sm-2 control-label string required" for="article_title">
       选择标签</label>
@@ -18,7 +19,6 @@
       <script type="text/plain" id="contentEditor" name="article[content]" id="article_content" style="width:800px;height:300px;"><%= raw(@article.content) %></script>
     </div>
   </div>
-  <%= f.input :avatar, label: "图片" %>
   <%= f.input :from, label: "来源" %>
   <%= f.input :url, label: "链接" %>
   <%= f.input :read_number, label: "阅读数" %>

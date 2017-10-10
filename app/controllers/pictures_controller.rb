@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_picture, only: [ :edit, :update, :destroy]
   load_and_authorize_resource
   layout 'admin'

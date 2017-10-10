@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
   resources :articles do
-    resources :pictures, shallow: true
+    resources :pictures#, shallow: true
   end
+
+  resources :photos, only: [:index, :edit, :update, :destroy]
+
   resources :labels do
     member do
       put 'forbid'
