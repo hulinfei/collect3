@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
   def show
     #阅读数+1
    # @article.inc(read_number: 1)
+    @read_number = $redis.incr("articles:#{@article.id.to_s}:read_number")
     @pictures = @article.pictures
     @picture = @article.pictures.build
 
