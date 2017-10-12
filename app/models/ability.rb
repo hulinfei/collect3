@@ -9,8 +9,11 @@ class Ability
         can :manage, :all
     elsif user.role == 'user'
         can :manage, Article, user: user
-        can :read, User
-        can :update, User, itself: user
+        can :read, Label
+        can :manage, Picture
+    elsif user.role == 'collecter'
+        can :read, Article
+        can :read, Picture
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,13 +1,14 @@
 class PhotosController < ApplicationController
   before_action :authenticate_user!
   before_action :set_photo, only: [:edit, :update, :destroy]
-  # load_and_authorize_resource
+  #load_and_authorize_resource
   layout 'admin'
 
   # GET /lables
   # GET /lables.json
   def index
     @photos = Picture.all.page params[:page]
+    authorize! :index, Picture
   end
 
 

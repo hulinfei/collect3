@@ -62,4 +62,5 @@ gem 'devise-i18n'
 gem 'sidekiq'
 gem 'redis'
 gem "sidekiq-cron"
-
+gem 'mina-puma', require: false
+gem 'mina-sidekiq'

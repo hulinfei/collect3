@@ -8,7 +8,7 @@
             <span>导航</span>
           </li>
           <li class="<%= "active" if controller_name == "home" %>">
-            <a href="/admin/home" class="auto">
+            <a href="/admin/sidekiq/queues" class="auto">
               <i class="glyphicon glyphicon-stats icon text-primary"></i>
               <span class="font-bold">控制面板</span>
             </a>
@@ -26,7 +26,7 @@
               </a>
           </li>
       
-          <% if can? :read, User %>
+          <% if can? :read, User%>
 
           <li class="<%= "active" if controller_name == "managers" %>">
                 <a href="/managers" class="auto">
@@ -43,13 +43,14 @@
                 </a>
           </li>
           <% end %>
-
+          <% if can? :read, Picture %>
           <li class="<%= "active" if controller_name == "labels" %>">
                 <a href="/photos" class="auto">
                   <i class="glyphicon glyphicon-picture"></i>
                   <span>图片管理</span>
                 </a>
           </li>
+         <% end -%>
         </ul>
       </nav>
       <!-- nav -->

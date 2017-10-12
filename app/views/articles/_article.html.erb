@@ -1,6 +1,6 @@
 <tr>
   <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.title %></td>
-  <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.content %></td>
+  <!-- <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.content %></td> -->
   <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><%= article.from %></td>
   <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
     <a href="<%= article.url %>" target="view_window"><%= article.url %></a></td>
@@ -8,8 +8,12 @@
   <td><%= article.created_at.strftime("%F %T") %></td>
   <td>
   	<%= link_to "查看", article, class: "btn btn-default btn-xs" %>
+    <% if can?(:update, article)  %>
     <%= link_to "修改", edit_article_path(article), class: "btn btn-default btn-xs" %>
+    <% end -%>
+    <% if can?(:detroy, article)  %>
     <%= link_to "删除", article_path(article), method: :delete, class: "btn btn-default btn-xs" %>
+    <% end -%>
   </td>
 </tr>
 
