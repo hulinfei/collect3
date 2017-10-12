@@ -22,7 +22,7 @@
     <%= link_to "修改", edit_photo_path(photo), class: "btn btn-default btn-xs" %>
     <% end -%>
     <% if can?(:destroy, Picture)  %>
-    <%= link_to "删除", photo_path(photo), method: :delete, class: "btn btn-default btn-xs" %>
+    <%= link_to "删除", photo_path(photo), method: :delete, class: "btn btn-danger btn-xs" %>
     <% end -%>
   </td>
 </tr>

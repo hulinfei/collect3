@@ -3,7 +3,7 @@
   include Mongoid::Timestamps
   # include Mongoid::Tags
 
-  paginates_per 3
+  paginates_per 5
   # 文章标题
   field :title, type: String
   # 文章内容

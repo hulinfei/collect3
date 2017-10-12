@@ -10,10 +10,10 @@
     <%= link_to "修改", edit_user_path(user), class: "btn btn-default btn-xs" %>
     <% end -%>
     <% if can? :destroy, User, itself: current_user  %>
-    <%= link_to "删除", user_path(user), method: :delete, class: "btn btn-default btn-xs" %>
+    <%= link_to "删除", user_path(user), method: :delete, class: "btn btn-danger btn-xs" %>
     <% end -%>
     <% if user.active %>
-      <%= link_to "取消激活", unactive_user_path(user, page: params[:page]), method: :put, class: "btn btn-danger btn-xs" %>
+      <%= link_to "取消激活", unactive_user_path(user, page: params[:page]), method: :put, class: "btn btn-warning btn-xs" %>
     <% else %>
       <%= link_to "激活", active_user_path(user, page: params[:page]), method: :put, class: "btn btn-success btn-xs" %>
     <% end -%>
