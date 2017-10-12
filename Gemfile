@@ -64,3 +64,4 @@ gem 'redis'
 gem "sidekiq-cron"
 gem 'mina-puma', require: false
 gem 'mina-sidekiq'
+gem 'rails-i18n'
