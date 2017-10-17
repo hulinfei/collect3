@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   mount Sidekiq::Web => '/admin/sidekiq'
-  
-  # authenticate :user do
-  #   mount Sidekiq::Web => '/admin/sidekiq'
-  # end
+
   resources :articles do
     resources :pictures#, shallow: true
   end
