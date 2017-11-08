@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.all.articles.build(article_params)
+    @article = current_user.articles.build(article_params)
     puts "==" * 20
     selected_labels = Label.in(id: params["checked_labels"].try(:values))
     @article.labels << selected_labels
