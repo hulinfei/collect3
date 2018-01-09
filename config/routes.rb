@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 Rails.application.routes.draw do
 
+  resources :schools
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   mount Sidekiq::Web => '/admin/sidekiq'
